@@ -1,0 +1,53 @@
+# ========================
+# NODE / FRONTEND
+# ========================
+node_modules/
+frontend/node_modules/
+
+.next/
+frontend/.next/
+out/
+build/
+
+.pnp
+.pnp.*
+
+# ========================
+# LOGS
+# ========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ========================
+# ENV FILES (IMPORTANT)
+# ========================
+.env
+.env.*
+.env.local
+
+# ========================
+# OS / SYSTEM FILES
+# ========================
+.DS_Store
+
+# ========================
+# TYPESCRIPT
+# ========================
+*.tsbuildinfo
+next-env.d.ts
+
+# ========================
+# PYTHON / BACKEND
+# ========================
+venv/
+__pycache__/
+*.pyc
+
+# ========================
+# MISC
+# ========================
+*.pem
+coverage/
+.vercel

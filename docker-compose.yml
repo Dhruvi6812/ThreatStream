@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: threatstream-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: threatstream
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: threatstream-backend
+    ports:
+      - "8000:8000"
+    environment:
+      ABUSEIPDB_API_KEY: ${ABUSEIPDB_API_KEY}
+    depends_on:
+      - postgres
+
+  app:
+    build:
+      context: ./frontend
+    container_name: threatstream-app
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    depends_on:
+      - postgres
+      - backend
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/threatstream
+      JWT_SECRET: supersecretkey123
+      NEXT_PUBLIC_API_URL: http://host.docker.internal:8000
+
+volumes:
+  pgdata:
