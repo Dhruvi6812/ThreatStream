@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.api.threats import router as threat_router
-from backend.app.api.ip_routes import router as ip_router
+from app.api.threats import router as threat_router
+from app.api.ip_routes import router as ip_router
 
 app = FastAPI(title="ThreatStream API")
 
