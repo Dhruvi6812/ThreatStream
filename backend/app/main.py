@@ -9,14 +9,11 @@ app = FastAPI(title="ThreatStream API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    "https://threat-stream-five.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(threat_router)
 app.include_router(ip_router)
 
