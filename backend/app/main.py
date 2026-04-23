@@ -8,9 +8,8 @@ app = FastAPI(title="ThreatStream API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-    "https://threat-stream-five.vercel.app"], 
-    allow_credentials=True,
+    allow_origins=["*"],   
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
