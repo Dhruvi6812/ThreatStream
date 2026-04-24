@@ -108,7 +108,6 @@ export default function IPSearchBox({
 
           loadHistory(userId);
         }
-      }
     } catch {
       alert("Search failed");
     } finally {
