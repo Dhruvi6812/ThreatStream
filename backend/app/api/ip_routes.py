@@ -11,14 +11,16 @@ class IPRequest(BaseModel):
     domain: str | None = None
     userId: str
     
-@router.get("/ip")
-def analyze_ip(target: str):
-    # TEMP response (later we connect API)
+@router.get("/check-ip")
+def check_ip(ip: str):
     return {
-        "ip": target,
-        "abuse_score": 42,
-        "country": "US",
-        "isp": "Example ISP"
+        "status": "success",
+        "data": {
+            "ip": ip,
+            "abuse_score": 42,
+            "country": "US",
+            "isp": "Example ISP"
+        }
     }
 
 # SAVE SEARCH
