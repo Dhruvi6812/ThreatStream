@@ -88,7 +88,7 @@ export default function IPSearchBox({
 
       // CHECK IP
       const res = await fetch(
-        `${API_BASE}/ip?target=${finalIP}`,
+        `${API_BASE}/check-ip?ip=${ip}`,
         {
           method: "GET",
         }
