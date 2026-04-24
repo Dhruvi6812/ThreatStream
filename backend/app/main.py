@@ -5,15 +5,15 @@ from app.api.ip_routes import router as ip_router
 
 app = FastAPI(title="ThreatStream API")
 
-# 🔥 FORCE CORS (Railway-safe)
 @app.middleware("http")
 async def cors_fix(request, call_next):
+    print("MIDDLEWARE RUNNING")   # ADD THIS
     response = await call_next(request)
-    
+
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    
+
     return response
 
 app.include_router(threat_router)
