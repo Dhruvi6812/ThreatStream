@@ -6,13 +6,19 @@ from app.api.ip_routes import router as ip_router
 
 app = FastAPI(title="ThreatStream API")
 
+origins = [
+    "https://threat-stream-five.vercel.app",
+    "http://localhost:3000"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   
-    allow_credentials=False,
+    allow_origins=origins,   
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(threat_router)
 app.include_router(ip_router)
 
