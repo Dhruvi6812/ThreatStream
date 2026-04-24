@@ -88,13 +88,11 @@ export default function IPSearchBox({
 
       // CHECK IP
       const res = await fetch(
-        `${API_BASE}/check-ip?ip=${finalIP}`
+        `${API_BASE}/ip?target=${finalIP}`
       );
 
       const data = await res.json();
-
-      if (data.status === "success") {
-        setResult(data.data);
+      setResult(data);
 
         // SAVE
         if (userId) {
