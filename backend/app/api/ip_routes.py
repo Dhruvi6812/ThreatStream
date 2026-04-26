@@ -107,3 +107,9 @@ def save_ip(data: IPRequest):
 def get_history(userId: str):
     user_history = [x for x in fake_db if x["userId"] == userId]
     return user_history[::-1]  # latest first
+
+@router.delete("/ip/clear")
+def clear_history(userId: str):
+    global fake_db
+    fake_db = [x for x in fake_db if x["userId"] != userId]
+    return {"status": "cleared"}

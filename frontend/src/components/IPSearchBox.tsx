@@ -126,6 +126,24 @@ export default function IPSearchBox({
       setLoading(false);
     }
   }
+
+  async function clearHistory() {
+    if (!userId) return;
+    if (!confirm("Clear all search history?")) return;
+
+    const res = await fetch(
+      `${API_BASE}/ip/clear?userId=${userId}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (res.ok) {
+      setHistory([]);
+    } else {
+      alert("Failed to clear history");
+    }
+  }
   
   const getRiskLabel = (score: number) => {
     if (score >= 80) return { label: "High Risk", color: "text-red-400" };
@@ -199,7 +217,18 @@ export default function IPSearchBox({
 
       {/* HISTORY */}
       <div>
-        <h2 className="text-lg mb-2">Recent Searches</h2>
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-lg">Recent Searches</h2>
+
+          {history.length > 0 && (
+            <button
+              onClick={clearHistory}
+              className="text-sm bg-red-600 hover:bg-red-500 px-3 py-1 rounded"
+            >
+              Clear
+            </button>
+          )}
+        </div>
 
         {history.length === 0 ? (
           <p className="text-gray-400 text-sm">No searches yet</p>
