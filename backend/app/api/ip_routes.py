@@ -74,12 +74,12 @@ def check_ip(ip: str):
             "data": {
                 "input": cleaned,
                 "resolved_ip": resolved_ip,
-                "ip": result["ipAddress"],
-                "abuse_score": result["abuseConfidenceScore"],
-                "country": result["countryCode"],
-                "isp": result["isp"],
+                "ip": result.get("ipAddress"),
+                "abuse_score": result.get("abuseConfidenceScore", 0),
+                "country": result.get("countryCode"),
+                "isp": result.get("isp"),
                 "domain": cleaned,
-                "reports": result["totalReports"]
+                "reports": result.get("totalReports", 0)  
             }
         }
 
