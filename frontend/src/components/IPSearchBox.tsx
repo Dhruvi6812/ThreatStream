@@ -100,7 +100,11 @@ export default function IPSearchBox({
 
       const data = await res.json();
 
-      setResult(data);
+      if (data.status === "success") {
+        setResult(data.data);
+      } else {
+        alert(data.message || "Search failed");
+      }
 
         // SAVE
         if (userId) {
@@ -185,7 +189,7 @@ export default function IPSearchBox({
           <p><b>Country:</b> {result?.country}</p>
           <p><b>ISP:</b> {result?.isp}</p>
           <p><b>Domain:</b> {result?.domain}</p>
-          <p><b>Reports:</b> {result?.totalReports}</p>
+          <p><b>Reports:</b> {result?.reports}</p>
 
           <p className="mt-2 text-sm text-gray-400">
             ⚠️ Real-time lookup from AbuseIPDB
